@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support & Developer Website</title>
+  <style>
+    :root{
+      --bg: #0f172a;        /* slate-900 */
+      --card: #111827;      /* gray-900 */
+      --muted: #94a3b8;     /* slate-400 */
+      --text: #e5e7eb;      /* gray-200 */
+      --accent: #22c55e;    /* green-500 */
+      --ring: rgba(34,197,94,.25);
+      --radius: 20px;
+    }
+
+    *{box-sizing: border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,Helvetica,sans-serif;
+      color:var(--text); background: radial-gradient(1200px 600px at 70% -10%, #1f2937, transparent), var(--bg);
+      display:grid; place-items:center; padding:24px;
+    }
+
+    .card{
+      width:min(920px, 100%);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(148,163,184,.18);
+      border-radius: var(--radius);
+      box-shadow: 0 20px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+      overflow:hidden;
+    }
+
+    .header{
+      display:flex; align-items:center; gap:14px; padding:22px 22px 16px; border-bottom:1px solid rgba(148,163,184,.15);
+      background: linear-gradient(180deg, rgba(15,23,42,.6), rgba(15,23,42,.2));
+    }
+    .logo{
+      width:56px; height:56px; border-radius:14px; display:grid; place-items:center; overflow:hidden;
+      background:#0ea5e9; box-shadow: 0 10px 20px rgba(14,165,233,.35);
+    }
+    .logo img{width:100%; height:100%; object-fit:cover}
+    .title{font-weight:700; letter-spacing:.2px; font-size:1.25rem}
+    .subtitle{color:var(--muted); font-size:.9rem}
+
+    .content{padding:18px 18px 8px}
+
+    /* RUNNING LOGO STRIP */
+    .logo-strip{
+      position:relative; background:#0b1220; border:1px dashed rgba(148,163,184,.22);
+      border-radius: 14px; padding:12px; overflow:hidden; margin-bottom:14px;
+    }
+    .logo-track{ display:flex; gap:28px; width:max-content; animation: scrollX 18s linear infinite; }
+    .logo-pill{
+      display:flex; align-items:center; gap:12px; padding:10px 14px; border-radius:999px;
+      background:rgba(255,255,255,.04); border:1px solid rgba(148,163,184,.2);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+      white-space:nowrap; backdrop-filter: blur(6px);
+    }
+    .logo-pill img{ width:28px; height:28px; border-radius:6px; object-fit:cover }
+    .logo-name{ font-size:.95rem; color:#e2e8f0 }
+
+    @keyframes scrollX { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+    /* RUNNING TEXT (MARQUEE) */
+    .ticker{
+      position:relative; overflow:hidden; border-radius:12px; border:1px solid rgba(148,163,184,.18);
+      background:linear-gradient(90deg, rgba(34,197,94,.08), rgba(14,165,233,.08));
+    }
+    .ticker-inner{ display:flex; gap:48px; width:max-content; padding:12px 16px; animation: marquee 22s linear infinite }
+    .ticker span{ font-weight:600 }
+    .ticker small{ opacity:.75 }
+    @keyframes marquee { from { transform:translateX(0) } to { transform:translateX(-50%) } }
+
+    /* FOOTER */
+    .footer{ display:flex; justify-content:space-between; align-items:center; padding:16px 18px 20px; color:var(--muted) }
+    .btn{
+      appearance:none; border:none; cursor:pointer; border-radius:12px; padding:10px 14px;
+      background:rgba(34,197,94,.12); color:#d1fae5; font-weight:700; letter-spacing:.3px;
+      box-shadow: 0 8px 20px var(--ring); transition: transform .08s ease; text-decoration:none; display:inline-flex; align-items:center; gap:10px
+    }
+    .btn:active{ transform: translateY(1px) }
+    .btn svg{ width:18px; height:18px }
+
+    /* RESPONSIVE */
+    @media (max-width: 520px){
+      .title{font-size:1.05rem}
+      .logo-track{ animation-duration: 24s }
+      .ticker-inner{ animation-duration: 28s }
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <header class="header">
+      <div class="logo" aria-hidden="true">
+        <!-- Ganti src ke logo Anda: logo.png -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWVdow_8AW4-YsVbmD6MPulT_HimjT28VWoA&s" alt="Logo" onerror="this.outerHTML=placeholderSVG" />
+      </div>
+      <div>
+        <div class="title">Support & Developer Website</div>
+        <div class="subtitle">Dukungan dan Pengembangan Website Desa Cahaya Baru Kecamatan Jejangkit Kabupaten Barito Kuala</div>
+      </div>
+    </header>
+
+    <section class="content">
+      <!-- Strip logo berjalan (duplikasi konten untuk loop mulus) -->
+      <div class="logo-strip" aria-label="Logo berjalan">
+        <div class="logo-track" id="logoTrack">
+          <!-- Satu set -->
+          <div class="logo-pill"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2Q7yUJqsTS57ouorNY2Q2onfU1vOwEqv3ZYy5e8ObJRQYop0ymTvX8h0C6CKAjwywd5rGA5qB-cKUNZPzgSSqpRHWQj-JnSvDp3-n5KcJZYAb2dM8uij1IIWKUtuTTcUFdQ8311MwzORIYR14J3UUpky93gluDRJZwzEkvauiX-7ZEK1ZjuDCKT3PstQ/w320-h320/icon-pemdes.png" alt="Logo" onerror="this.src='data:image/svg+xml;utf8,'+encodeURIComponent(fallbackIcon)"/><span class="logo-name">Pemerintah Desa Cahaya Baru</span></div>
+          <div class="logo-pill"><img src="https://ugm.ac.id/wp-content/uploads/2022/11/LOGO-UGM-BAKU-tnp-back-grou-300x300.jpg" alt="Logo" onerror="this.src='data:image/svg+xml;utf8,'+encodeURIComponent(fallbackIcon)"/><span class="logo-name">KKN - PPM Universitas Gadjah Mada Barito Kuala 2024 - 2025</span></div>
+
+          <!-- Duplikasi untuk loop seamless -->
+          <div class="logo-pill"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2Q7yUJqsTS57ouorNY2Q2onfU1vOwEqv3ZYy5e8ObJRQYop0ymTvX8h0C6CKAjwywd5rGA5qB-cKUNZPzgSSqpRHWQj-JnSvDp3-n5KcJZYAb2dM8uij1IIWKUtuTTcUFdQ8311MwzORIYR14J3UUpky93gluDRJZwzEkvauiX-7ZEK1ZjuDCKT3PstQ/w320-h320/icon-pemdes.png" alt="Logo" onerror="this.src='data:image/svg+xml;utf8,'+encodeURIComponent(fallbackIcon)"/><span class="logo-name">Pemerintah Desa Cahaya Baru</span></div>
+          <div class="logo-pill"><img src="https://ugm.ac.id/wp-content/uploads/2022/11/LOGO-UGM-BAKU-tnp-back-grou-300x300.jpg" alt="Logo" onerror="this.src='data:image/svg+xml;utf8,'+encodeURIComponent(fallbackIcon)"/><span class="logo-name">KKN - PPM Universitas Gadjah Mada Barito Kuala 2024 - 2025</span></div>
+
+        </div>
+      </div>
+
+      <!-- Teks berjalan (marquee) -->
+      <div class="ticker" role="status" aria-live="polite">
+        <div class="ticker-inner" id="ticker">
+          <div><span>INFO:</span> <small>Silakan hubungi layanan support kami via WhatsApp/Email di bawah ini.</small></div>
+          <div><span>SUPPORT:</span> <small>PEMERINTAH DESA CAHAYA BARU KECAMATAN JEJANGKIT KABUPATEN BARITO KUALA</small></div>
+          <div><span>DEVELOPER WEBSITE:</span> <small>KHAIRI YANUR (PEMDES CAHAYA BARU); MUHAMMAD LUTHFI ATTAQI & RYAN KRISHANDI LUKITO (KKN-PPM UGM BARITO KUALA 2025) </small></div>
+		  <div><span>GEOTAG INFORMASI:</span> <small>DAVIN ADIWIDYA SAIFUDDIN (KKN-PPM UGM BARITO KUALA 2025) </small></div>
+
+          <!-- duplikasi untuk loop -->
+		  <div><span>INFO:</span> <small>Silakan hubungi layanan support kami via WhatsApp/Email di bawah ini.</small></div>
+          <div><span>SUPPORT:</span> <small>PEMERINTAH DESA CAHAYA BARU KECAMATAN JEJANGKIT KABUPATEN BARITO KUALA</small></div>
+          <div><span>DEVELOPER WEBSITE:</span> <small>KHAIRI YANUR (PEMDES CAHAYA BARU); MUHAMMAD LUTHFI ATTAQI & RYAN KRISHANDI LUKITO (KKN-PPM UGM BARITO KUALA 2025) </small></div>
+		  <div><span>GEOTAG INFORMASI:</span> <small>DAVIN ADIWIDYA SAIFUDDIN (KKN-PPM UGM BARITO KUALA 2025) </small></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>Butuh bantuan lebih lanjut? <strong>Kami siap!</strong></div>
+      <div style="display:flex; gap:10px; align-items:center">
+        <a class="btn" href="https://cahayabarujejangkit.com/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 0h14V7H7v2zm0 4h14v-2H7v2zm0 4h14v-2H7v2z"/></svg>
+          Dashboard
+        </a>
+		<a class="btn" href="https://wa.me/6285179991339" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 .01 5.37.01 12c0 2.12.55 4.17 1.6 5.99L0 24l6.17-1.61A11.98 11.98 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22a9.93 9.93 0 01-5.07-1.39l-.36-.21-3.66.95.98-3.56-.24-.37A9.95 9.95 0 012 12C2 6.49 6.49 2 12 2s10 4.49 10 10-4.49 10-10 10zm5.27-7.28c-.29-.14-1.72-.85-1.99-.95-.27-.1-.46-.14-.66.14-.19.29-.76.95-.94 1.15-.17.19-.35.21-.65.07-.29-.14-1.22-.45-2.32-1.44-.86-.76-1.44-1.7-1.61-1.98-.17-.29-.02-.45.12-.59.12-.12.29-.31.43-.46.14-.14.19-.24.29-.41.1-.19.05-.34-.02-.48-.07-.14-.66-1.6-.9-2.19-.24-.58-.48-.5-.66-.5h-.57c-.19 0-.48.07-.73.34-.24.29-.96.94-.96 2.29 0 1.34.98 2.64 1.12 2.82.14.19 1.93 2.95 4.68 4.14.65.28 1.16.45 1.56.58.65.21 1.25.18 1.72.11.53-.08 1.72-.7 1.96-1.38.24-.67.24-1.24.17-1.38-.07-.14-.26-.21-.55-.35z"/></svg>
+          WhatsApp
+        </a>
+        <a class="btn" href="mailto:pemdescahayabaru@gmail.com">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 13.065l-11.99-7.6V20a2 2 0 002 2h20a2 2 0 002-2V5.465l-12.01 7.6zM23.99 4a2 2 0 00-2-2h-20a2 2 0 00-2 2v.313L12 12.268 23.99 4.313V4z"/></svg>
+          Email
+        </a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Placeholder logo (SVG) jika logo.png tidak tersedia
+    const placeholderSVG = `
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Placeholder">
+        <rect width="56" height="56" rx="14" fill="#0ea5e9"/>
+        <path d="M14 28c0-7.732 6.268-14 14-14s14 6.268 14 14-6.268 14-14 14S14 35.732 14 28z" fill="white" fill-opacity=".2"/>
+        <path d="M20 28c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8-8-3.582-8-8z" fill="white"/>
+      </svg>`;
+
+    // Ikon kecil sebagai fallback untuk chip logo
+    const fallbackIcon = `
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+        <rect x='2' y='2' width='20' height='20' rx='6' fill='#0ea5e9'/>
+        <circle cx='12' cy='12' r='6' fill='white' fill-opacity='.9'/>
+      </svg>`;
+
+    // Opsi mudah diubah:
+    const OPTIONS = {
+      tickerSpeedSeconds: 18,   // ubah kecepatan teks berjalan
+      logoSpeedSeconds: 10      // ubah kecepatan logo berjalan
+    };
+
+    // Terapkan opsi jika diedit
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.ticker-inner').style.animationDuration = OPTIONS.tickerSpeedSeconds + 's';
+      document.querySelector('.logo-track').style.animationDuration = OPTIONS.logoSpeedSeconds + 's';
+    });
+  </script>
+  <a> Pemerintah Desa Cahaya Baru Kecamatan Jejangkit Kabupaten Barito Kuala ©2025 <a/>
+</body>
+</html>
